@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "f571e29a-605f-410a-ad35-42902559ab30",
+		"name": "spring-postgress",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_endpoint}}/{{selected_element_id}}",
+					"host": [
+						"{{local_endpoint}}"
+					],
+					"path": [
+						"{{selected_element_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Charlotte\"\n}"
+				},
+				"url": {
+					"raw": "{{local_endpoint}}",
+					"host": [
+						"{{local_endpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response=JSON.parse(responseBody)",
+							"pm.collectionVariables.set(\"selected_element_id\", response[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_endpoint}}",
+					"host": [
+						"{{local_endpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Agatha\"\n}"
+				},
+				"url": {
+					"raw": "{{local_endpoint}}/{{selected_element_id}}",
+					"host": [
+						"{{local_endpoint}}"
+					],
+					"path": [
+						"{{selected_element_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local_endpoint}}/{{selected_element_id}}",
+					"host": [
+						"{{local_endpoint}}"
+					],
+					"path": [
+						"{{selected_element_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "f8aa37ae-8069-4ba6-898d-5024f7eaef58",
+			"key": "local_endpoint",
+			"value": ""
+		},
+		{
+			"id": "f612aa55-7dfd-4c9c-a7a1-75ae4ec1f70b",
+			"key": "selected_element_id",
+			"value": ""
+		}
+	]
+}
