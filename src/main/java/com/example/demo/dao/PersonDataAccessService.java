@@ -41,11 +41,11 @@ public class PersonDataAccessService implements PersonDao {
     public Optional<Person> selectPersonById(UUID id) {
         final String sql = "SELECT name, id FROM person WHERE id = ?";
 
-        Person person = jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> {
+        Person person = jdbcTemplate.queryForObject(sql, (resultSet, i) -> {
             UUID personId = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("name");
             return new Person(personId, name);
-        });
+        }, id);
 
         return Optional.ofNullable(person);
     }
