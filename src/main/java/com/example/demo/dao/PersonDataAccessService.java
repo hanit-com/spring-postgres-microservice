@@ -21,7 +21,12 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int insertPerson(UUID id, Person person) {
-        return 0;
+        jdbcTemplate.update(
+                "INSERT INTO person (id, name) VALUES (?, ?)",
+                id, person.getName()
+        );
+
+        return 1;
     }
 
     @Override
@@ -52,11 +57,21 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int deletePersonByID(UUID id) {
-        return 0;
+        jdbcTemplate.update(
+                "DELETE FROM person WHERE id = ?",
+                id
+        );
+
+        return 1;
     }
 
     @Override
     public int updatePersonById(UUID id, Person person) {
-        return 0;
+        jdbcTemplate.update(
+                "UPDATE person SET name = ? WHERE id = ?",
+                person.getName(), id
+        );
+
+        return 1;
     }
 }
