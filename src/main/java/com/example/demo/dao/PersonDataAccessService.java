@@ -13,6 +13,7 @@ import java.util.UUID;
 public class PersonDataAccessService implements PersonDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private final String personTableName = "person";
 
     @Autowired
     public PersonDataAccessService(JdbcTemplate jdbcTemplate) {
@@ -21,19 +22,17 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int insertPerson(UUID id, Person person) {
-        jdbcTemplate.update(
-                "INSERT INTO person (id, name) VALUES (?, ?)",
-                id, person.getName()
-        );
+        final String query = String.format("INSERT INTO %s (id, name) VALUES (?, ?)", personTableName);
+        jdbcTemplate.update(query, id, person.getName());
 
         return 1;
     }
 
     @Override
     public List<Person> selectAllPeople() {
-        final String sql = "SELECT name, id FROM person";
+        final String query = String.format("SELECT name, id FROM %s", personTableName);
 
-        List<Person> people = jdbcTemplate.query(sql, (resultSet, i) -> {
+        List<Person> people = jdbcTemplate.query(query, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("name");
             return new Person(id, name);
@@ -44,9 +43,9 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public Optional<Person> selectPersonById(UUID id) {
-        final String sql = "SELECT name, id FROM person WHERE id = ?";
+        final String query = String.format("SELECT name, id FROM %s WHERE id = ?", personTableName);
 
-        Person person = jdbcTemplate.queryForObject(sql, (resultSet, i) -> {
+        Person person = jdbcTemplate.queryForObject(query, (resultSet, i) -> {
             UUID personId = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("name");
             return new Person(personId, name);
@@ -57,20 +56,16 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int deletePersonByID(UUID id) {
-        jdbcTemplate.update(
-                "DELETE FROM person WHERE id = ?",
-                id
-        );
+        final String query = String.format("DELETE FROM %s WHERE id = ?", personTableName);
+        jdbcTemplate.update(query, id);
 
         return 1;
     }
 
     @Override
     public int updatePersonById(UUID id, Person person) {
-        jdbcTemplate.update(
-                "UPDATE person SET name = ? WHERE id = ?",
-                person.getName(), id
-        );
+        final String query = String.format("UPDATE %s SET name = ? WHERE id = ?", personTableName);
+        jdbcTemplate.update(query, person.getName(), id);
 
         return 1;
     }
