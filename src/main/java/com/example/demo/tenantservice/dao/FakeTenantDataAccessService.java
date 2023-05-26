@@ -1,6 +1,6 @@
-package com.example.demo.dao;
+package com.example.demo.tenantservice.dao;
 
-import com.example.demo.model.Tenant;
+import com.example.demo.tenantservice.model.Tenant;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

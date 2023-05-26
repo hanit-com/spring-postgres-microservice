@@ -1,8 +1,9 @@
-package com.example.demo.api;
+package com.example.demo.tenantservice.api;
 
-import com.example.demo.model.Tenant;
-import com.example.demo.service.TenantService;
+import com.example.demo.tenantservice.model.Tenant;
+import com.example.demo.tenantservice.service.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
+@Profile("tenantservice")
 @RequestMapping("/api/v1/tenant")
 @RestController
 public class TenantController {

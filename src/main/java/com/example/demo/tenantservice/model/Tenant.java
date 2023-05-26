@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.tenantservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotBlank;

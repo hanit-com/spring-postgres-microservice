@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.tenantservice.service;
 
-import com.example.demo.dao.TenantDao;
-import com.example.demo.model.Tenant;
+import com.example.demo.tenantservice.dao.TenantDao;
+import com.example.demo.tenantservice.model.Tenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
