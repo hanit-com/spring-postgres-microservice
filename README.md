@@ -1,6 +1,8 @@
-# README
+# Spring Boot Microservice
 
-#### DB Configuration
+An example project that demonstrates a Spring microservice that performs CRUD operations on Postgres relational database running on Docker.
+
+#### Environment
 
 Create and start postgres container:
 
@@ -8,7 +10,7 @@ Create and start postgres container:
 docker run --name postgres-spring -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine
 ```
 
-Get into the container`s shell:
+For testing and DB configurations, connect to the container`s shell:
 
 ```bash
 docker exec -it <container_id> bin/bash
